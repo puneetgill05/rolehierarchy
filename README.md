@@ -68,7 +68,7 @@ cd RoleHierarchy
 python3 RBAC_to_RH.py ../inputsup/hc
 ```
 
-```json
+```
 {'avg_num_layers': 1.5714285714285714,
  'max_layer': 3,
  'num_edges': 198,
@@ -88,7 +88,7 @@ python3 RBAC_to_RH.py ../inputsup/hc
 cd RoleHierarchy
 python3 RBAC_RH_IP_V2.py ../inputsup/hc
 ```
-```json
+```
 {'avg_num_layers': 1.9166666666666667,
  'max_layer': 4,
  'num_edges': 244,
