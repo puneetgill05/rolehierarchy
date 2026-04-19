@@ -1,0 +1,142 @@
+{
+    "2l10": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                5.33,
+                11.73
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                21.35,
+                88.65
+            ]
+        }
+    },
+    "2l03": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        }
+    },
+    "2l04": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                35.14,
+                50.06
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                61.63,
+                144.37
+            ]
+        }
+    },
+    "2l06": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        }
+    },
+    "2l02": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0,
+                7.62
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                11.04
+            ]
+        }
+    },
+    "2l09": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                4.49,
+                10.53
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                15.36,
+                62.64
+            ]
+        }
+    },
+    "2l07": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        }
+    },
+    "2l08": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0,
+                2.81
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                22.85
+            ]
+        }
+    },
+    "2l01": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0,
+                5.71
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                11.08
+            ]
+        }
+    },
+    "2l05": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                0.0
+            ]
+        }
+    }
+}

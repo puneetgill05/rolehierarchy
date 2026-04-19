@@ -1,0 +1,16 @@
+{
+    "mailer": {
+        "percentage_roles_shrinking": {
+            "confidence_interval": [
+                0,
+                0.77
+            ]
+        },
+        "num_edges_shrunk": {
+            "confidence_interval": [
+                0.0,
+                35.73
+            ]
+        }
+    }
+}

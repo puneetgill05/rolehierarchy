@@ -1,0 +1,46 @@
+# Bytecode and cache
+__pycache__/
+*.py[cod]
+
+# Virtual environments
+venv/
+.env/
+*.cfg
+lib/
+local/
+
+# IDE/editor settings
+.vscode/
+.idea/
+
+# Logs and misc
+*.log
+
+# Test artifacts
+.pytest_cache/
+.coverage
+
+# Jupyter
+.ipynb_checkpoints/
+
+
+# LaTeX
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.pdf
+
+# Project
+*.lp
+*.sol
+*-em.txt
+*-upmap.txt
+
+
+

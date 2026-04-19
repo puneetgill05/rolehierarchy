@@ -1,0 +1,202 @@
+{
+    "2l10": {
+        "initial_rbac_data": {
+            "num_edges": 1625,
+            "num_roles": 50
+        },
+        "final_rbac_data": {
+            "num_edges": 1544,
+            "num_roles": 59
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 8.53,
+            "num_role_pairs": 293,
+            "num_edges_shrunk": 55
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 6.69,
+            "num_role_pairs": 1225,
+            "num_edges_shrunk": 81
+        }
+    },
+    "2l03": {
+        "initial_rbac_data": {
+            "num_edges": 517,
+            "num_roles": 25
+        },
+        "final_rbac_data": {
+            "num_edges": 0,
+            "num_roles": 0
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 169,
+            "num_edges_shrunk": 0
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 300,
+            "num_edges_shrunk": 0
+        }
+    },
+    "2l04": {
+        "initial_rbac_data": {
+            "num_edges": 834,
+            "num_roles": 25
+        },
+        "final_rbac_data": {
+            "num_edges": 729,
+            "num_roles": 31
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 42.6,
+            "num_role_pairs": 169,
+            "num_edges_shrunk": 103
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 43.0,
+            "num_role_pairs": 300,
+            "num_edges_shrunk": 105
+        }
+    },
+    "2l06": {
+        "initial_rbac_data": {
+            "num_edges": 739,
+            "num_roles": 25
+        },
+        "final_rbac_data": {
+            "num_edges": 0,
+            "num_roles": 0
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 169,
+            "num_edges_shrunk": 0
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 300,
+            "num_edges_shrunk": 0
+        }
+    },
+    "2l02": {
+        "initial_rbac_data": {
+            "num_edges": 469,
+            "num_roles": 15
+        },
+        "final_rbac_data": {
+            "num_edges": 461,
+            "num_roles": 17
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 3.61,
+            "num_role_pairs": 83,
+            "num_edges_shrunk": 3
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 5.71,
+            "num_role_pairs": 105,
+            "num_edges_shrunk": 8
+        }
+    },
+    "2l09": {
+        "initial_rbac_data": {
+            "num_edges": 1132,
+            "num_roles": 50
+        },
+        "final_rbac_data": {
+            "num_edges": 1030,
+            "num_roles": 55
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 7.51,
+            "num_role_pairs": 293,
+            "num_edges_shrunk": 39
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 7.43,
+            "num_role_pairs": 1225,
+            "num_edges_shrunk": 102
+        }
+    },
+    "2l07": {
+        "initial_rbac_data": {
+            "num_edges": 1073,
+            "num_roles": 25
+        },
+        "final_rbac_data": {
+            "num_edges": 0,
+            "num_roles": 0
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 169,
+            "num_edges_shrunk": 0
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 300,
+            "num_edges_shrunk": 0
+        }
+    },
+    "2l08": {
+        "initial_rbac_data": {
+            "num_edges": 946,
+            "num_roles": 25
+        },
+        "final_rbac_data": {
+            "num_edges": 937,
+            "num_roles": 25
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 1.18,
+            "num_role_pairs": 169,
+            "num_edges_shrunk": 9
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 0.67,
+            "num_role_pairs": 300,
+            "num_edges_shrunk": 9
+        }
+    },
+    "2l01": {
+        "initial_rbac_data": {
+            "num_edges": 473,
+            "num_roles": 15
+        },
+        "final_rbac_data": {
+            "num_edges": 470,
+            "num_roles": 15
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 2.41,
+            "num_role_pairs": 83,
+            "num_edges_shrunk": 3
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 1.9,
+            "num_role_pairs": 105,
+            "num_edges_shrunk": 3
+        }
+    },
+    "2l05": {
+        "initial_rbac_data": {
+            "num_edges": 729,
+            "num_roles": 25
+        },
+        "final_rbac_data": {
+            "num_edges": 0,
+            "num_roles": 0
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 169,
+            "num_edges_shrunk": 0
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 0.0,
+            "num_role_pairs": 300,
+            "num_edges_shrunk": 0
+        }
+    }
+}

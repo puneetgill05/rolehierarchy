@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NetworkX from Dict → Interactive HTML</title>
+  <style>
+    html, body { height: 100%; margin: 0; }
+    header { padding: 12px 16px; background: #111; color: #fff; font-family: system-ui, sans-serif; }
+    #panel { padding: 10px 14px; border-bottom: 1px solid #ddd; display: flex; gap: 16px; align-items: center; font-family: system-ui, sans-serif; flex-wrap: wrap; }
+    #panel button { padding: 6px 10px; border: 1px solid #aaa; background: #f5f5f5; border-radius: 6px; cursor: pointer; }
+    #panel button:hover { background: #eee; }
+    svg { width: 100%; height: calc(100% - 96px); display: block; background: #fafafa; }
+    .node { stroke: #fff; stroke-width: 1.5px; cursor: grab; }
+    .node:active { cursor: grabbing; }
+    .label { font-size: 11px; pointer-events: none; font-family: system-ui, sans-serif; }
+  </style>
+</head>
+<body>
+  <header><strong>NetworkX from Dict → Interactive HTML</strong></header>
+  <div id="panel">
+    <label>Charge: <input id="charge" type="range" min="-500" max="0" value="-220" step="10"></label>
+    <label>Link distance: <input id="distance" type="range" min="20" max="240" value="80" step="5"></label>
+    <button id="zoomIn">+</button>
+    <button id="zoomOut">−</button>
+    <button id="zoomReset">Reset</button>
+    <button id="zoomFit">Fit</button>
+  </div>
+  <svg>
+    
+      <defs>
+        <marker id="arrow" viewBox="0 -5 10 10" refX="16" refY="0" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,-5L10,0L0,5" fill="#999"></path>
+        </marker>
+      </defs>
+        
+  </svg>
+
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <script>
+    const nodes = [{"id": "0", "deg": 36}, {"id": "P8", "deg": 4}, {"id": "P7", "deg": 4}, {"id": "P25", "deg": 4}, {"id": "P30", "deg": 3}, {"id": "P27", "deg": 4}, {"id": "P28", "deg": 6}, {"id": "P3", "deg": 2}, {"id": "P11", "deg": 4}, {"id": "P4", "deg": 3}, {"id": "P31", "deg": 4}, {"id": "P9", "deg": 4}, {"id": "P21", "deg": 4}, {"id": "P19", "deg": 4}, {"id": "P2", "deg": 4}, {"id": "P24", "deg": 4}, {"id": "P15", "deg": 4}, {"id": "P12", "deg": 4}, {"id": "P29", "deg": 5}, {"id": "P18", "deg": 4}, {"id": "U29", "deg": 1}, {"id": "P26", "deg": 4}, {"id": "U0", "deg": 1}, {"id": "U9", "deg": 1}, {"id": "P6", "deg": 4}, {"id": "P16", "deg": 4}, {"id": "P20", "deg": 3}, {"id": "P10", "deg": 4}, {"id": "P1", "deg": 5}, {"id": "P5", "deg": 4}, {"id": "P0", "deg": 3}, {"id": "P22", "deg": 4}, {"id": "P17", "deg": 4}, {"id": "P13", "deg": 4}, {"id": "P23", "deg": 4}, {"id": "P14", "deg": 4}, {"id": "1", "deg": 28}, {"id": "U17", "deg": 1}, {"id": "U3", "deg": 2}, {"id": "U11", "deg": 1}, {"id": "2", "deg": 7}, {"id": "U7", "deg": 2}, {"id": "P33", "deg": 2}, {"id": "P32", "deg": 2}, {"id": "U19", "deg": 3}, {"id": "U35", "deg": 3}, {"id": "3", "deg": 16}, {"id": "P41", "deg": 1}, {"id": "P40", "deg": 3}, {"id": "P34", "deg": 3}, {"id": "P43", "deg": 2}, {"id": "P37", "deg": 1}, {"id": "P35", "deg": 3}, {"id": "P36", "deg": 2}, {"id": "P44", "deg": 2}, {"id": "P39", "deg": 2}, {"id": "P38", "deg": 4}, {"id": "P42", "deg": 4}, {"id": "4", "deg": 10}, {"id": "5", "deg": 31}, {"id": "U39", "deg": 1}, {"id": "U4", "deg": 1}, {"id": "U45", "deg": 1}, {"id": "U22", "deg": 1}, {"id": "U15", "deg": 1}, {"id": "U2", "deg": 1}, {"id": "U34", "deg": 2}, {"id": "6", "deg": 2}, {"id": "7", "deg": 11}, {"id": "U18", "deg": 3}, {"id": "8", "deg": 2}, {"id": "9", "deg": 7}, {"id": "U31", "deg": 2}, {"id": "U26", "deg": 2}, {"id": "U43", "deg": 2}, {"id": "10", "deg": 9}, {"id": "U27", "deg": 1}, {"id": "29", "deg": 6}, {"id": "11", "deg": 4}, {"id": "U30", "deg": 1}, {"id": "12", "deg": 4}, {"id": "U38", "deg": 1}, {"id": "13", "deg": 6}, {"id": "14", "deg": 10}, {"id": "U42", "deg": 1}, {"id": "U1", "deg": 1}, {"id": "U13", "deg": 2}, {"id": "18", "deg": 7}, {"id": "U16", "deg": 1}, {"id": "U20", "deg": 1}, {"id": "U21", "deg": 1}, {"id": "22", "deg": 37}, {"id": "P45", "deg": 2}, {"id": "24", "deg": 6}, {"id": "27", "deg": 2}, {"id": "28", "deg": 4}, {"id": "30", "deg": 4}, {"id": "U36", "deg": 1}, {"id": "31", "deg": 18}, {"id": "U6", "deg": 1}, {"id": "U5", "deg": 1}, {"id": "U24", "deg": 1}, {"id": "U12", "deg": 1}, {"id": "U33", "deg": 1}, {"id": "U37", "deg": 1}, {"id": "U14", "deg": 1}, {"id": "U40", "deg": 1}, {"id": "U28", "deg": 1}, {"id": "U10", "deg": 1}, {"id": "U44", "deg": 1}, {"id": "U25", "deg": 1}, {"id": "U32", "deg": 1}, {"id": "U23", "deg": 1}, {"id": "U8", "deg": 1}, {"id": "33", "deg": 3}, {"id": "U41", "deg": 1}];
+    const links = [{"source": "0", "target": "P8"}, {"source": "0", "target": "P7"}, {"source": "0", "target": "P25"}, {"source": "0", "target": "P30"}, {"source": "0", "target": "P27"}, {"source": "0", "target": "P28"}, {"source": "0", "target": "P3"}, {"source": "0", "target": "P11"}, {"source": "0", "target": "P4"}, {"source": "0", "target": "P31"}, {"source": "0", "target": "P9"}, {"source": "0", "target": "P21"}, {"source": "0", "target": "P19"}, {"source": "0", "target": "P2"}, {"source": "0", "target": "P24"}, {"source": "0", "target": "P15"}, {"source": "0", "target": "P12"}, {"source": "0", "target": "P29"}, {"source": "0", "target": "P18"}, {"source": "0", "target": "U29"}, {"source": "0", "target": "P26"}, {"source": "0", "target": "U0"}, {"source": "0", "target": "U9"}, {"source": "0", "target": "P6"}, {"source": "0", "target": "P16"}, {"source": "0", "target": "P20"}, {"source": "0", "target": "P10"}, {"source": "0", "target": "P1"}, {"source": "0", "target": "P5"}, {"source": "0", "target": "P0"}, {"source": "0", "target": "P22"}, {"source": "0", "target": "P17"}, {"source": "0", "target": "P13"}, {"source": "0", "target": "P23"}, {"source": "0", "target": "P14"}, {"source": "1", "target": "P7"}, {"source": "1", "target": "P8"}, {"source": "1", "target": "P25"}, {"source": "1", "target": "U17"}, {"source": "1", "target": "P11"}, {"source": "1", "target": "P9"}, {"source": "1", "target": "P21"}, {"source": "1", "target": "P19"}, {"source": "1", "target": "P24"}, {"source": "1", "target": "P15"}, {"source": "1", "target": "P12"}, {"source": "1", "target": "P18"}, {"source": "1", "target": "P26"}, {"source": "1", "target": "U3"}, {"source": "1", "target": "P6"}, {"source": "1", "target": "P16"}, {"source": "1", "target": "P20"}, {"source": "1", "target": "P10"}, {"source": "1", "target": "P5"}, {"source": "1", "target": "P22"}, {"source": "1", "target": "P17"}, {"source": "1", "target": "P13"}, {"source": "1", "target": "U11"}, {"source": "1", "target": "P23"}, {"source": "1", "target": "P14"}, {"source": "2", "target": "U7"}, {"source": "2", "target": "P33"}, {"source": "2", "target": "P32"}, {"source": "2", "target": "U19"}, {"source": "2", "target": "U35"}, {"source": "3", "target": "P41"}, {"source": "3", "target": "3"}, {"source": "3", "target": "P40"}, {"source": "3", "target": "P34"}, {"source": "3", "target": "U19"}, {"source": "3", "target": "U35"}, {"source": "3", "target": "P43"}, {"source": "3", "target": "P37"}, {"source": "3", "target": "P35"}, {"source": "3", "target": "P36"}, {"source": "3", "target": "P44"}, {"source": "3", "target": "P39"}, {"source": "3", "target": "P38"}, {"source": "3", "target": "P42"}, {"source": "4", "target": "P1"}, {"source": "4", "target": "4"}, {"source": "4", "target": "P40"}, {"source": "4", "target": "P28"}, {"source": "4", "target": "P42"}, {"source": "4", "target": "P38"}, {"source": "4", "target": "P36"}, {"source": "5", "target": "P8"}, {"source": "5", "target": "P7"}, {"source": "5", "target": "P25"}, {"source": "5", "target": "P11"}, {"source": "5", "target": "U39"}, {"source": "5", "target": "P9"}, {"source": "5", "target": "P21"}, {"source": "5", "target": "P19"}, {"source": "5", "target": "P24"}, {"source": "5", "target": "U4"}, {"source": "5", "target": "P15"}, {"source": "5", "target": "P12"}, {"source": "5", "target": "P18"}, {"source": "5", "target": "P26"}, {"source": "5", "target": "U45"}, {"source": "5", "target": "U22"}, {"source": "5", "target": "P6"}, {"source": "5", "target": "U15"}, {"source": "5", "target": "U2"}, {"source": "5", "target": "P16"}, {"source": "5", "target": "P10"}, {"source": "5", "target": "P5"}, {"source": "5", "target": "P22"}, {"source": "5", "target": "P17"}, {"source": "5", "target": "U34"}, {"source": "5", "target": "P13"}, {"source": "5", "target": "P23"}, {"source": "5", "target": "P14"}, {"source": "6", "target": "P28"}, {"source": "7", "target": "P40"}, {"source": "7", "target": "7"}, {"source": "7", "target": "P34"}, {"source": "7", "target": "P35"}, {"source": "7", "target": "U18"}, {"source": "7", "target": "P44"}, {"source": "7", "target": "P39"}, {"source": "7", "target": "P38"}, {"source": "7", "target": "P42"}, {"source": "8", "target": "8"}, {"source": "9", "target": "U31"}, {"source": "9", "target": "U26"}, {"source": "9", "target": "P34"}, {"source": "9", "target": "U34"}, {"source": "9", "target": "P35"}, {"source": "9", "target": "U43"}, {"source": "10", "target": "P29"}, {"source": "10", "target": "P0"}, {"source": "10", "target": "P27"}, {"source": "10", "target": "P43"}, {"source": "10", "target": "P2"}, {"source": "10", "target": "U27"}, {"source": "10", "target": "P4"}, {"source": "10", "target": "29"}, {"source": "10", "target": "P31"}, {"source": "29", "target": "1"}, {"source": "29", "target": "P1"}, {"source": "29", "target": "6"}, {"source": "29", "target": "7"}, {"source": "29", "target": "14"}, {"source": "11", "target": "P2"}, {"source": "11", "target": "1"}, {"source": "11", "target": "U30"}, {"source": "11", "target": "P29"}, {"source": "12", "target": "U38"}, {"source": "12", "target": "P38"}, {"source": "12", "target": "5"}, {"source": "12", "target": "P42"}, {"source": "13", "target": "U7"}, {"source": "13", "target": "P29"}, {"source": "13", "target": "P30"}, {"source": "13", "target": "P27"}, {"source": "13", "target": "P28"}, {"source": "13", "target": "P31"}, {"source": "14", "target": "1"}, {"source": "14", "target": "P33"}, {"source": "14", "target": "P32"}, {"source": "14", "target": "U42"}, {"source": "14", "target": "U1"}, {"source": "14", "target": "U18"}, {"source": "14", "target": "U13"}, {"source": "18", "target": "P1"}, {"source": "18", "target": "5"}, {"source": "18", "target": "P28"}, {"source": "18", "target": "U16"}, {"source": "18", "target": "U20"}, {"source": "18", "target": "U21"}, {"source": "22", "target": "P8"}, {"source": "22", "target": "P7"}, {"source": "22", "target": "P25"}, {"source": "22", "target": "P30"}, {"source": "22", "target": "P27"}, {"source": "22", "target": "P28"}, {"source": "22", "target": "P3"}, {"source": "22", "target": "P11"}, {"source": "22", "target": "P4"}, {"source": "22", "target": "22"}, {"source": "22", "target": "P31"}, {"source": "22", "target": "P9"}, {"source": "22", "target": "P21"}, {"source": "22", "target": "P19"}, {"source": "22", "target": "P2"}, {"source": "22", "target": "P24"}, {"source": "22", "target": "P15"}, {"source": "22", "target": "P12"}, {"source": "22", "target": "P29"}, {"source": "22", "target": "P18"}, {"source": "22", "target": "P26"}, {"source": "22", "target": "U19"}, {"source": "22", "target": "P6"}, {"source": "22", "target": "P16"}, {"source": "22", "target": "P20"}, {"source": "22", "target": "P10"}, {"source": "22", "target": "P1"}, {"source": "22", "target": "P5"}, {"source": "22", "target": "P0"}, {"source": "22", "target": "P22"}, {"source": "22", "target": "U35"}, {"source": "22", "target": "P17"}, {"source": "22", "target": "P45"}, {"source": "22", "target": "P13"}, {"source": "22", "target": "P23"}, {"source": "22", "target": "P14"}, {"source": "24", "target": "U31"}, {"source": "24", "target": "2"}, {"source": "24", "target": "5"}, {"source": "24", "target": "U26"}, {"source": "24", "target": "U43"}, {"source": "27", "target": "9"}, {"source": "27", "target": "U3"}, {"source": "28", "target": "U13"}, {"source": "28", "target": "4"}, {"source": "28", "target": "U18"}, {"source": "28", "target": "14"}, {"source": "30", "target": "P45"}, {"source": "30", "target": "4"}, {"source": "30", "target": "U36"}, {"source": "30", "target": "14"}, {"source": "31", "target": "0"}, {"source": "31", "target": "2"}, {"source": "31", "target": "3"}, {"source": "31", "target": "U6"}, {"source": "31", "target": "U5"}, {"source": "31", "target": "U24"}, {"source": "31", "target": "U12"}, {"source": "31", "target": "U33"}, {"source": "31", "target": "U37"}, {"source": "31", "target": "U14"}, {"source": "31", "target": "U40"}, {"source": "31", "target": "U28"}, {"source": "31", "target": "U10"}, {"source": "31", "target": "U44"}, {"source": "31", "target": "U25"}, {"source": "31", "target": "U32"}, {"source": "31", "target": "U23"}, {"source": "31", "target": "U8"}, {"source": "33", "target": "24"}, {"source": "33", "target": "18"}, {"source": "33", "target": "U41"}];
+
+    const svg = d3.select("svg");
+    const width = svg.node().clientWidth;
+    const height = svg.node().clientHeight;
+
+    // Main groups for zoom/pan
+    const gMain  = svg.append("g").attr("class", "gMain");
+    const gLinks = gMain.append("g").attr("class", "links");
+    const gNodes = gMain.append("g").attr("class", "nodes");
+    const gLabels= gMain.append("g").attr("class", "labels");
+
+  const link = gLinks.selectAll("line")
+    .data(links)
+    .join("line")
+    .attr("class", "link")
+    .attr("marker-end", "url(#arrow)")
+    .attr("stroke", d => (d.weight == null) ? "#999" : (d.weight < 1 ? "#88c" : (d.weight < 3 ? "#c84" : "#000")))
+    .attr("stroke-width", d => d.weight ? Math.max(1, Math.sqrt(d.weight)) : 1.5);
+
+
+    // Color isolated nodes differently (deg == 0)
+    const node = gNodes.selectAll("circle")
+      .data(nodes)
+      .join("circle")
+        .attr("class", "node")
+        .attr("r", 8)
+        .attr("fill", (d, i) => (d.deg === 0 ? "#aaa" : d3.schemeTableau10[i % 10]));
+
+    const label = gLabels.selectAll("text")
+      .data(nodes)
+      .join("text")
+        .attr("class", "label")
+        .attr("dx", 12)
+        .attr("dy", "0.35em")
+        .text(d => d.id);
+
+    // --- Isolated node handling ---
+    // Pre-position isolated nodes (deg==0) on a circle so they show nicely even if graph has other links.
+    const iso = nodes.filter(d => (d.deg || 0) === 0);
+    if (iso.length > 0) {
+      const R = Math.min(width, height) / 2.6;
+      iso.forEach((d, i) => {
+        const a = 2 * Math.PI * i / iso.length;
+        d.x = width/2  + R * Math.cos(a);
+        d.y = height/2 + R * Math.sin(a);
+      });
+    }
+
+    let sim = buildSimulation();
+
+    function buildSimulation(charge=-220, distance=80) {
+      const sim = d3.forceSimulation(nodes)
+        .force("charge", d3.forceManyBody().strength(charge))
+        .force("center", d3.forceCenter(width/2, height/2))
+        .force("collide", d3.forceCollide(14))          // keep nodes from overlapping
+        .force("x", d3.forceX(width/2).strength(0.02))  // gentle tether so isolated don't drift away
+        .force("y", d3.forceY(height/2).strength(0.02))
+        .on("tick", ticked);
+
+      // Only add link force if links exist
+      if (links.length > 0) {
+        sim.force("link", d3.forceLink(links).id(d => d.id).distance(distance));
+      }
+      return sim;
+    }
+
+    function ticked() {
+      gLinks.selectAll("line")
+        .attr("x1", d => d.source.x)
+        .attr("y1", d => d.source.y)
+        .attr("x2", d => d.target.x)
+        .attr("y2", d => d.target.y);
+
+      node.attr("cx", d => d.x).attr("cy", d => d.y);
+      label.attr("x", d => d.x).attr("y", d => d.y);
+    }
+
+    // D3 zoom
+    const zoom = d3.zoom()
+      .scaleExtent([0.2, 5])
+      .on("zoom", (event) => {
+        gMain.attr("transform", event.transform);
+      });
+    svg.call(zoom).on("dblclick.zoom", null);
+
+    // Buttons
+    document.getElementById("zoomIn").addEventListener("click", () => {
+      svg.transition().duration(250).call(zoom.scaleBy, 1.2);
+    });
+    document.getElementById("zoomOut").addEventListener("click", () => {
+      svg.transition().duration(250).call(zoom.scaleBy, 1/1.2);
+    });
+    document.getElementById("zoomReset").addEventListener("click", () => {
+      svg.transition().duration(300).call(zoom.transform, d3.zoomIdentity);
+    });
+    document.getElementById("zoomFit").addEventListener("click", () => zoomToFit());
+
+    function zoomToFit(pad = 0.9) {
+      const bounds = gMain.node().getBBox();
+      const fullWidth  = svg.node().clientWidth;
+      const fullHeight = svg.node().clientHeight;
+
+      const dx = bounds.width;
+      const dy = bounds.height;
+      const cx = bounds.x + dx / 2;
+      const cy = bounds.y + dy / 2;
+
+      if (!dx || !dy) {
+        svg.transition().call(zoom.transform, d3.zoomIdentity);
+        return;
+      }
+
+      const scale = pad / Math.max(dx / fullWidth, dy / fullHeight);
+      const transform = d3.zoomIdentity
+        .translate(fullWidth / 2, fullHeight / 2)
+        .scale(scale)
+        .translate(-cx, -cy);
+
+      svg.transition().duration(600).call(zoom.transform, transform);
+    }
+
+    // Dragging
+    node.call(d3.drag()
+      .on("start", (event, d) => {
+        if (!event.active) sim.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      })
+      .on("drag", (event, d) => {
+        d.fx = event.x; d.fy = event.y;
+      })
+      .on("end", (event, d) => {
+        if (!event.active) sim.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      })
+    );
+
+    // Force controls
+    const chargeInput = document.getElementById("charge");
+    const distInput = document.getElementById("distance");
+
+    chargeInput.addEventListener("input", (e) => {
+      const val = +e.target.value;
+      sim.force("charge").strength(val);
+      sim.alpha(0.5).restart();
+    });
+
+    distInput.addEventListener("input", (e) => {
+      const val = +e.target.value;
+      if (sim.force("link")) {
+        sim.force("link").distance(val);
+        sim.alpha(0.5).restart();
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{
+    "mailer": {
+        "initial_rbac_data": {
+            "num_edges": 5567,
+            "num_roles": 565
+        },
+        "final_rbac_data": {
+            "num_edges": 4995,
+            "num_roles": 655
+        },
+        "sample": {
+            "percent_role_pairs_shrinkage": 0.26,
+            "num_role_pairs": 384,
+            "num_edges_shrunk": 11
+        },
+        "actual": {
+            "percent_role_pairs_shrinkage": 0.94,
+            "num_role_pairs": 159330,
+            "num_edges_shrunk": 572
+        }
+    }
+}
