@@ -10,7 +10,7 @@ p24gill@uwaterloo.ca
 
 
 What's in this repo:
- 1)[paper.pdf](https://github.com/puneetgill05/rolehierarchy/blob/main/paper.pdf): PDF of the paper
+ 1) [paper.pdf](https://github.com/puneetgill05/rolehierarchy/blob/main/paper.pdf): PDF of the paper
  2) README.md: this readme file
  3) removedominatorsbp.py: remove dominator edges from the input user-permission bipartite graph.
  4) findcliquesbp.py: networkx's find_cliques() adapted to maximal bicliques in a bipartite graph
