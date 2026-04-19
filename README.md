@@ -1,4 +1,7 @@
-# rolehierarchy
+## Overview
+
+This project provides implementations of algorithms for constructing and evaluating role hierarchies from mined RBAC policies.
+
 
 Convert an access matrix to a role-based policy in a manner that minimizes the number of roles.
 
@@ -19,21 +22,10 @@ What's in this repo:
  7) RoleHierarchy/RHBuilder_Vaidya.py.py: This is the RHMiner algorithm used as the baseline.
  
 
-## Overview
-
-This project provides implementations of algorithms for constructing and evaluating role hierarchies from mined RBAC policies.
-
-### Algorithms
-
-- **MinRolesRH**: Restructures a min-role RBAC policy into a multi-layer hierarchy.
-- **NewRolesRH**: Introduces new roles to increase hierarchy depth.
-- **RHMiner**: Baseline algorithm.
 
 ---
 
 ## Repository
-
-https://github.com/puneetgill05/rolehierarchy
 
 Clone:
 
