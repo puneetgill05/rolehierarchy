@@ -17,7 +17,7 @@ What's in this repo:
  5) [maxsetsbp.py](https://github.com/puneetgill05/rolehierarchy/blob/main/maxsetsbp.py): the algorithm from Section 4 that enumerate all maximal bicliques, reduces to ILP and invokes gurobi to solve. It invokes removedominators() first.
  6) [RoleHierarchy/RBAC_to_RH.py](https://github.com/puneetgill05/rolehierarchy/blob/main/RoleHierarchy/RBAC_to_RH.py): This is the MinRolesRH algorithm from the paper. MinRolesRH, which begins with an RBAC policy that minimizes the number of roles and restructures it into a multi-layered role hierarchy.
  7) [RoleHierarchy/RBAC_RH_IP_V2.py](https://github.com/puneetgill05/rolehierarchy/blob/main/RoleHierarchy/RBAC_RH_IP_V2.py): This is the NewRolesRH algorithm from the paper. In this algorithm, we begin with a candidate RBAC policy and introduce new roles that can be added to higher layers of the hierarchy. The goal is to construct a hierarchy with the maximum possible number of layers. Introducing new roles ensures that each role remains distinct.
- 8) [RoleHierarchy/RHBuilder_Vaidya.py.py](https://github.com/puneetgill05/rolehierarchy/blob/main/RoleHierarchy/RHBuilder_Vaidya.py.py): This is the RHMiner algorithm used as the baseline.
+ 8) [RoleHierarchy/RHBuilder_Vaidya.py](https://github.com/puneetgill05/rolehierarchy/blob/main/RoleHierarchy/RHBuilder_Vaidya.py): This is the RHMiner algorithm used as the baseline.
  
 ---
 
